@@ -1,0 +1,15 @@
+.skiptranslate, .goog-te-balloon-frame{display: none !important;}
+.goog-text-highlight { background: none !important; box-shadow: none !important;}
+
+body{
+    top:0 !important;
+}
+.goog-te-banner-frame {
+    display: none;
+    height: 0 !important;
+    visibility: hidden
+}
+
+#google_translate_element {
+    display: none;
+}
