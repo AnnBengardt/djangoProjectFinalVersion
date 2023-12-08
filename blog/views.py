@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 
 class BlogListView(ListView):
     model = Post
-    paginate_by = 2
+    paginate_by = 3
     template_name = 'home.html'
 
 

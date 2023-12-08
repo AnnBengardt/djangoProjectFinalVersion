@@ -7,10 +7,10 @@
                 <div class="bg-image card shadow-1-strong"
                      style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%);">
                     <div style="margin-left: 1%">
-                        <h2>{{ post.title }}</h2>
-                        <p>{{ post.body }}</p>
+                        <h2><span style="color: #f5f5dc; ">{{ post.title }}</span></h2>
+                        <p><span style="color: #f5f5dc; ">{{ post.body }}</span></p>
                         {% if post.image %}
-                        <img src="{{ post.image.url }}" alt="" width="800" height="400">
+                        <img src="{{ post.image.url }}" alt="" width="35%" height="35%">
                         {% endif %}
                     </div>
                 </div>
@@ -21,17 +21,17 @@
     <div style="text-align: center; margin-top: 5px;">
         <span class="step-links" style="font-size: 20px; color: black;">
             {% if page_obj.has_previous %}
-                <a href="?page=1" class="pagination-item" style="color: black;">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-item" style="color: black;">previous</a>
+                <a href="?page=1" class="pagination-item" style="color: black;">&laquo; Первая страница</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-item" style="color: black;">Предыдущая</a>
             {% endif %}
 
             <span class="current" style="color: black;">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}" class="pagination-item" style="color: black;">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-item" style="color: black;">last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}" class="pagination-item" style="color: black;">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-item" style="color: black;">Последняя страница &raquo;</a>
             {% endif %}
         </span>
     </div>
