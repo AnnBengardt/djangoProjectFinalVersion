@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AccountsConfig(AppConfig):
+class RnnConfig(AppConfig):
     default_auto_field = 'django.db.utils.BigAutoField'
-    name = 'accounts'
+    name = 'rnn'

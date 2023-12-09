@@ -25,6 +25,7 @@ urlpatterns = [  #i18n_patterns
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
     path('', include('blog.urls')),
+    path("ml/", include("rnn.urls"))
     #path("rosetta/", include("rosetta.urls"))
 
 ]

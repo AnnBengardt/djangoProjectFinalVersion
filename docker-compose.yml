@@ -27,3 +27,13 @@ services:
     ports:
       - "27017:27017"
     container_name: mongodb_container
+
+  #db_mongodb_worker_import:
+      #image: mongo
+      #container_name: "reviews_import"
+      #depends_on:
+      #  - db
+     # volumes:
+      #  - ./mongo-seed:/mongo-seed
+
+      #command: mongoimport --host db:27017 --db django --collection rnn_review --type json --file /mongo-seed/reviews_data.json --jsonArray --authenticationDatabase admin --username root --password root

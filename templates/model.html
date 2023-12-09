@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+     <div class="bg-image card shadow-1-strong"
+                     style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%);">
+                    <div style="margin-left: 1%">
+                        <h2><span style="color: #f5f5dc; ">Рекуррентная нейронная сеть для классификации положительных и негативных отзывов на фильмы (Sentiment analysis)</span></h2>
+                        <p><span style="color: #f5f5dc; ">Получение прогнозного значения для выбранной записи из датасета обращением к готовой модели </span></p>
+                        <form method="post">
+                            <label for="row">Номер записи: </label>
+                            <input type="number" id="row" name="row" min="1" max="2000">
+                             <input type="submit" value="Predict">
+                        </form>
+                    {% if prediction == 0 or prediction == 1 %}
+                        <p>Отзыв: {{ text }}</p>
+                        <p>Прогнозное значение: {{ prediction }}</p>
+                    {% endif %}
+                    </div>
+                </div>
+
+
+{% endblock %}
