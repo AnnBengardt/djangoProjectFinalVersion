@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Профиль пользователя</h2>
+        {% if profile %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <img id="avatar-preview" src="{% if profile.avatar %}{{ profile.avatar.url }}{% else %}{% static 'avatars/empty_avatar.png' %}{% endif %}" alt="Avatar Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        {% else %}
+            <p>Для завершения регистрации, пожалуйста, введите ваши данные.</p>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <img id="avatar-preview" src="{% static 'avatars/empty_avatar.png' %}" alt="Avatar Preview" class="img-thumbnail" style="max-width: 200px; max-height: 200px;">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </form>
+        {% endif %}
+    </div>
+
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('avatar-preview');
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "{% static 'avatars/empty_avatar.png' %}";
+            }
+        }
+    </script>
+{% endblock %}

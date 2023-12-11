@@ -86,13 +86,27 @@
                                 data-lang="ja" data-text="Japanese" onclick=updateLanguage("ja")> Японский </a></li>
 
                             </ul></li>
+                        <form class="navbar-form" role="search" method="GET" action="{% url 'search' %}">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Поиск" name="q"
+                                       value="{{ query }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-light" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'advanced_search' %}">Расширенный поиск</a>
+                        </li>
                     </ul>
                 </div>
                 {% if user.is_authenticated %}
                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item px-2">
-                                     <p class="navbar-brand">Привет {{ user.username }}!</p>
+                                     <p class="navbar-brand">Привет <a href="{% url 'profile' %}">{{ user.username }}</a>!</p>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href='{% url 'logout' %}'>Выйти</a>

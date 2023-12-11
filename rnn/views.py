@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, TemplateView
 from .models import Review
 from .model import predict
@@ -21,4 +21,16 @@ def model_view(request):
     else:
         return render(request, 'model.html')
 
+
+class SearchView(TemplateView):
+    def search_view(request):
+        query = request.GET.get('q')
+
+        if not query:
+            return redirect('home')  # переход на главную, если запрос пустой
+
+        results = Review.objects.filter(text__icontains=query)
+
+        context = {'results': results, 'query': query, "item": "review"}
+        return render(request, 'search_results.html', context)
 

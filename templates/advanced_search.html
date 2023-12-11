@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2>Расширенный поиск</h2>
+        <form method="get" action="{% url 'advanced_search' %}">
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Искать</button>
+        </form>
+
+        {% if results %}
+            <h3>Результаты поиска</h3>
+            <ul>
+                {% for post in results %}
+                    <li>
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.body }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Ничего не найдено.</p>
+        {% endif %}
+    </div>
+{% endblock %}

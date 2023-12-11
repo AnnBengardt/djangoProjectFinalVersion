@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if not query %}
+        <script>
+            window.location.href = "/";
+        </script>
+    {% else %}
+        <h2>Результаты поиска для "{{ query }}"</h2>
+
+    {% if results and item == "post" %}
+        <ul>
+            {% for result in results %}
+                <li><div style="margin-top: 1%">
+            <div class="post-entry">
+                <div class="bg-image card shadow-1-strong"
+                     style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%);">
+                    <div style="margin-left: 1%">{{ result.title }}
+                    <p>{{ result.body }}</p>
+                    {% if result.image %}
+                        <img src="{{ result.image.url }}" alt="" width="800" height="400">
+                    {% endif %}</div>
+                </div>
+            </div>
+        </div></li>
+            {% endfor %}
+        </ul>
+    {% elif results and item == "review" %}
+        <ul>
+            {% for result in results %}
+                <li><div style="margin-top: 1%">
+            <div class="post-entry">
+                <div class="bg-image card shadow-1-strong"
+                     style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%);">
+                    <div style="margin-left: 1%">{{ result.row }}
+                    <p>{{ result.text }}</p>
+                    </div>
+                </div>
+            </div>
+        </div></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>По вашему запросу ничего не найдено.</p>
+    {% endif %}
+     {% endif %}
+{% endblock %}
