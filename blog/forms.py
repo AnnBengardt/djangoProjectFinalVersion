@@ -4,7 +4,7 @@ from .models import Profile
 
 class AdvancedSearchForm(forms.Form):
     title = forms.CharField(required=False, label='Заголовок')
-    body = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}), label='Текст поста')
+    body = forms.CharField(required=False, widget=forms.Textarea(attrs={'rows': 4}), label='Текст')
 
 
 class ProfileForm(forms.ModelForm):

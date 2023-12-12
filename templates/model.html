@@ -9,13 +9,18 @@
                         <h2><span style="color: #f5f5dc; ">Рекуррентная нейронная сеть для классификации положительных и негативных отзывов на фильмы (Sentiment analysis)</span></h2>
                         <p><span style="color: #f5f5dc; ">Получение прогнозного значения для выбранной записи из датасета обращением к готовой модели </span></p>
                         <form method="post">
-                            <label for="row">Номер записи: </label>
+                            <label for="row"><span style="color: #f5f5dc; ">Номер записи из БД: </span></label>
                             <input type="number" id="row" name="row" min="1" max="2000">
                              <input type="submit" value="Predict">
                         </form>
-                    {% if prediction == 0 or prediction == 1 %}
-                        <p>Отзыв: {{ text }}</p>
-                        <p>Прогнозное значение: {{ prediction }}</p>
+                    {% if prediction == 0 %}
+                        <p><span style="color: #f5f5dc; ">Отзыв: {{ text }}</span></p>
+                        <p><span style="color: #f5f5dc; ">Прогнозное значение: отзыв отрицательный</span></p>
+                        <p><span style="color: #f5f5dc; ">Истинное значение: отзыв {{ label }}</span></p>
+                    {% elif prediction == 1 %}
+                        <p><span style="color: #f5f5dc; ">Отзыв: {{ text }}</span></p>
+                        <p><span style="color: #f5f5dc; ">Прогнозное значение: отзыв положительный</span></p>
+                        <p><span style="color: #f5f5dc; ">Истинное значение: отзыв {{ label }}</span></p>
                     {% endif %}
                     </div>
                 </div>

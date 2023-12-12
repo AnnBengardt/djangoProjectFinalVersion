@@ -86,7 +86,7 @@
                                 data-lang="ja" data-text="Japanese" onclick=updateLanguage("ja")> Японский </a></li>
 
                             </ul></li>
-                        <form class="navbar-form" role="search" method="GET" action="{% url 'search' %}">
+                        <form class="navbar-form" role="search" method="GET" action="{% url 'rev_search' %}">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Поиск" name="q"
                                        value="{{ query }}">
