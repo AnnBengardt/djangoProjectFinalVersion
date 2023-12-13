@@ -1,0 +1,43 @@
+{% extends 'base2.html' %}
+
+{% load static %}
+{% block content %}
+<!-- In the body of the HTML page add this and continue adding all Fields. I have provided three example below -->
+    <h1 class='list'><span style="color: #f5f5dc; ">Использованный датасет</span></h1>
+     <table id="dtVerticalScrollExample" class="table table-striped table-bordered table-sm" cellspacing="0"
+  width="100%">
+         <thead>
+             <tr>
+                 <th class="th-sm"><span style="color: #f5f5dc; ">№</span>
+              </th>
+                 <th class="th-sm"><span style="color: #f5f5dc; ">Отзыв</span>
+              </th>
+                 <th class="th-sm"><span style="color: #f5f5dc; ">Класс (true)</span>
+              </th>
+                 <th class="th-sm"><span style="color: #f5f5dc; ">Класс (predicted)</span>
+              </th>
+            </tr>
+         </thead>
+          <tbody>
+       {% for review in page_obj  %}
+            <tr>
+                <td><span style="color: #f5f5dc; ">{{review.row}}</span></td>
+                <td><span style="color: #f5f5dc; ">{{review.text}}</span></td>
+                <td><span style="color: #f5f5dc; ">{{review.label}}</span></td>
+                <td><span style="color: #f5f5dc; ">{{review.prediction}}</span></td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+
+<script  type="text/javascript">
+$(document).ready(function () {
+  $('#dtVerticalScrollExample').DataTable({
+    "scrollY": "200px",
+    "scrollCollapse": true,
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+</script>
+{% endblock %}

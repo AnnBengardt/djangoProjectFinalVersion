@@ -1,18 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for post in object_list %}
+<script>
+$(document).ready(function(){
+    var maxLength = 65;
+    $(".show-read-more").each(function(i){
+        var myStr = $(this).text();
+        if($.trim(myStr).length > maxLength){
+            var newStr = myStr.substring(0, maxLength) + "...";
+            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+            var arr = $(".post-title").map(function() {
+                return this.innerHTML;
+            }).get();
+            console.log(arr)
+            const link = "/" + arr[i];
+            console.log(link)
+            $(this).empty().html(newStr);
+            $(this).append(' <a href="' + link + '" class="read-more">Читать далее...</a>');
+            $(this).append('<span class="more-text">' + removedStr + '</span>');
+        }
+    });
+});
+</script>
+<style>
+    .show-read-more .more-text{
+        display: none;
+    }
+
+    .read-more {
+        color: #cce5ff;
+    }
+</style>
+    {% for post in page_obj %}
         <div style="margin-top: 1%">
             <div class="post-entry">
                 <div class="bg-image card shadow-1-strong"
                      style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%);">
                     <div style="margin-left: 1%">
-                        <h2>{{ post.title }}</h2>
-                        <p>{{ post.body }}</p>
+                        <h2><span style="color: #f5f5dc; " class="post-title">{{ post.title }}</span></h2>
+                        <p id="post-text" class="show-read-more"><span style="color: #f5f5dc; ">{{ post.body }}</span></p>
+                        {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="" width="35%" height="35%">
+                        {% endif %}
                     </div>
                 </div>
             </div>
         </div>
-
     {% endfor %}
-{% endblock content %}
+
+    <div style="text-align: center; margin-top: 5px;">
+        <span class="step-links" style="font-size: 20px; color: black;">
+            {% if page_obj.has_previous %}
+                <a href="?page=1" class="pagination-item" style="color: #f5f5dc;">&laquo; Первая страница</a>
+                <a href="?page={{ page_obj.previous_page_number }}" class="pagination-item" style="color: #f5f5dc;">Предыдущая</a>
+            {% endif %}
+
+            <span class="current" style="color: #f5f5dc;">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="pagination-item" style="color: #f5f5dc;">Следующая</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-item" style="color: #f5f5dc;">Последняя страница &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}

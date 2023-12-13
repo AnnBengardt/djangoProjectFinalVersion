@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+     <div class="bg-image card shadow-1-strong"
+                     style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%);">
+                    <div style="margin-left: 1%">
+                        <h2><span style="color: #f5f5dc; ">Рекуррентная нейронная сеть для классификации положительных и негативных отзывов на фильмы (Sentiment analysis)</span></h2>
+                        <p><span style="color: #f5f5dc; ">Обучение </span></p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <label for="epochs"><span style="color: #f5f5dc; ">Количество эпох для обучения: </span></label>
+                            <input type="number" id="epochs" name="epochs" min="1" max="8">
+                            <label for="embed"><span style="color: #f5f5dc; "> Размер эмбедингов: </span></label>
+                            <input type="number" id="embed" name="embed" min="32" max="512">
+                            <label for="hidden"><span style="color: #f5f5dc; ">Размер слоя рекуррентной сети: </span></label>
+                            <input type="number" id="hidden" name="hidden" min="32" max="512">
+                            <label for="layers"><span style="color: #f5f5dc; ">Количество слоев: </span></label>
+                            <input type="number" id="layers" name="layers" min="2" max="10">
+                             <input type="submit" value="Train">
+                        </form>
+                    {% if history %}
+                        <h4><span style="color: #f5f5dc; ">Обучение модели завершено</span></h4>
+                        {% for epoch in history %}
+                            <h5><span style="color: #f5f5dc; ">Эпоха №{{ epoch.epoch }}</span></h5>
+                            <p><span style="color: #f5f5dc; ">Train loss: {{ epoch.train_loss }}</span></p>
+                            <p><span style="color: #f5f5dc; ">Train accuracy: {{ epoch.train_acc }}</span></p>
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+                </div>
+
+
+{% endblock %}
