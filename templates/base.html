@@ -12,7 +12,10 @@
     <script type="text/javascript" src="{% static 'translation_script.js' %}"></script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
-<body>
+<body style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(106,68,76,1) 100%); height: 100%;
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: cover;">
 {% block scripts %}
 <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'assets/js/popper.min.js' %}"></script>
@@ -33,6 +36,16 @@
         formURL: "{% url 'login' %}"
     });
   });
+</script>
+<script type="text/javascript">
+$('#post-text').text(function(_, txt) {
+  if(txt.length > 5){
+    txt = txt.substr(0, 5) + "...";
+    const link = document.getElementById("post-title");
+    $(this).parent().append("<a href=" + link + ">Читать далее</a>");
+  }
+  $(this).html(txt)
+});
 </script>
 {% endblock scripts %}
 <!---https://cssgradient.io/--->

@@ -34,5 +34,12 @@
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Войти</button>
   </div>
-
+<script type="text/javascript">
+  $(function () {
+    // Sign up button
+    $("#signup-btn").modalForm({
+        formURL: "{% url 'signup' %}"
+    });
+  });
+</script>
 </form>

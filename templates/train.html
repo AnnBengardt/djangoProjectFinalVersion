@@ -9,6 +9,7 @@
                         <h2><span style="color: #f5f5dc; ">Рекуррентная нейронная сеть для классификации положительных и негативных отзывов на фильмы (Sentiment analysis)</span></h2>
                         <p><span style="color: #f5f5dc; ">Обучение </span></p>
                         <form method="post">
+                            {% csrf_token %}
                             <label for="epochs"><span style="color: #f5f5dc; ">Количество эпох для обучения: </span></label>
                             <input type="number" id="epochs" name="epochs" min="1" max="8">
                             <label for="embed"><span style="color: #f5f5dc; "> Размер эмбедингов: </span></label>

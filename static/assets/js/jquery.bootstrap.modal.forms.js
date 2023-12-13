@@ -59,6 +59,8 @@ https://github.com/trco/django-bootstrap-modal-forms
     // Submit form callback function
     var submitForm = function (settings) {        
         if (!settings.asyncUpdate) {
+            //const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+            //console.log(csrftoken)
             $(settings.modalForm).submit();
         } else {          
             var asyncSettingsValid = validateAsyncSettings(settings.asyncSettings);
@@ -76,6 +78,7 @@ https://github.com/trco/django-bootstrap-modal-forms
                     data: formdata,
                     contentType: false,
                     processData: false,
+                    headers: {'X-CSRFToken': csrftoken},
                     success: function (response) {
                         var body = $("body");
                         if (body.length === 0) {
@@ -162,7 +165,7 @@ https://github.com/trco/django-bootstrap-modal-forms
                 dataElementId: null,
                 dataKey: null,
                 addModalFormFunction: null
-            }
+            },
         };
 
         // Extend default settings with provided options

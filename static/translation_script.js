@@ -32,7 +32,7 @@
                     case "ru":
                         selectIndex = 3;
                         break;
-                    case "ja": // Добавляем японский язык
+                    case "ja":
                         selectIndex = 4;
                         break;
 

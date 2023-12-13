@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "djongo",
     "blog",
-    'accounts.apps.AccountsConfig',
     "bootstrap_modal_forms",
     "widget_tweaks",
     "rnn"
@@ -52,8 +51,8 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    "djangoProject5.middle.DisableCSRF",
-    #    'django.middleware.csrf.CsrfViewMiddleware',
+    #"djangoProject5.middle.DisableCSRF",
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

@@ -1,9 +1,11 @@
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalLoginView
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView
 from .models import Post
 from django.core.paginator import Paginator
-from .forms import AdvancedSearchForm, ProfileForm
+from .forms import AdvancedSearchForm, ProfileForm, CustomAuthenticationForm, CustomUserCreationForm
 from .models import Profile
 
 class BlogListView(ListView):
@@ -62,8 +64,29 @@ class ProfileView(TemplateView):
                 profile = form.save(commit=False)
                 profile.user = request.user
                 profile.save()
-                # return redirect('home')  # Перенаправление на главную страницу после сохранения профиля
         else:
             form = ProfileForm(instance=profile)
 
         return render(request, 'profile.html', {'form': form, 'profile': profile})
+
+
+class SignUpView(BSModalCreateView):
+    form_class = CustomUserCreationForm
+    template_name = 'signup.html'
+    success_message = 'Success: Sign up succeeded. You can now Log in.'
+    success_url = reverse_lazy('home')
+
+
+
+
+class CustomLoginView(BSModalLoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = 'registration/login.html'
+    success_message = 'Success: You were successfully logged in.'
+    extra_context = dict(success_url=reverse_lazy('home'))
+
+
+class PostView(TemplateView):
+    def get_post_by_title(request, title):
+        post = get_object_or_404(Post, title=title)
+        return render(request, 'post.html', {'post': post})
